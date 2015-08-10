@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h2>New Book</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<!-- Form for authorized user to create a new book for one's created genre or press cancel to return to all the books page for a particular genre -->
+			<form action="{{url_for('newBook', genre_id=genre_id )}}" method='POST'>	
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="80" class="form-control" name="name"placeholder="Name of the book">
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the book"></textarea>
+					<label for="author">Author:</label>
+					<div class="input-group">
+						<input type ="text" class="form-control" maxlength="20" name="author">
+					</div>
+					<label for="isbn">Isbn:</label>
+					<div class="input-group">
+						<input type ="text" class="form-control" maxlength="16" name="isbn">
+					</div>
+					<div class="padding-bottom"></div>
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true">Create</span>
+					</button>
+					<a href = '{{url_for('showBooks', genre_id=genre_id)}}' class="btn btn-default delete">					
+						<span class="glyphicon glyphicon-remove" aria-hidden="true">Cancel</span>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+{% block content %}
+    <div class="row top-menu">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <h1>Catalog App</h1>
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="{{url_for('gdisconnect')}}" class="btn btn-default">Logout </a>
+        </div>
+    </div>
+    <div class="row divider blue">
+        <div class="col-md-12"></div>
+    </div>
+    <!--Show the viewer initial instructions -->
+    <div class="row banner main">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 padding-none">
+            <h2>Welcome! Select a genre or view the latest 10 books below</h2>
+        </div>
+    </div>
+    <!-- Flash Messages Appear Here -->
+    <div class = 'flash'>
+    	{% with messages = get_flashed_messages() %}
+            {% if messages %}  
+            <ul>
+            {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <!-- Authenticated users (upon login) will see this add newGenre button appear -->
+    <div class="row padding-top padding-bottom">
+        <div class="col-md-2 padding-none">
+            <a href="{{url_for('newGenre')}}">
+                <button class="btn btn-default" id="new-genre">
+                    <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>Add Genre
+                </button>
+            </a>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <!-- Shows the list of all genres in the left side bar and the option to edit or delete each one for authenticated users (upon login) -->
+    <div style="float:left;">
+        <p class="title">All Genres</p>  
+        {% for genre in genres %}
+            <a href = "{{url_for('showBooks', genre_id = genre.id)}}">
+                <div class="row">                
+                    <div class="col-md-6 genre-list">
+                        <h3>{{genre.name}}</h3>
+                        <a href = "{{url_for('editGenre',genre_id = genre.id)}}">Edit</a>
+                        <a href = "#">|</a>
+                        <a href = "{{url_for('deleteGenre',genre_id = genre.id)}}"> Delete</a>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <!-- Shows the list of 10 most recently added books -->
+    <div style="float:left; width:77%">
+        <p class="title">Recently Added 10 Books</p>  
+        {% for item in recent_items%}
+            <div class="row">             
+                <div class="col-md-12 recent-book-list">
+                    <h3>{{item.name}}</h3>                        
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

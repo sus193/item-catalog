@@ -1,0 +1,69 @@
+{% extends "main.html" %}
+{% block content %}
+    <!-- Menu shows the option to see all the genres, the application name, and the Login button -->
+    <div class="row top-menu">
+        <div class="col-md-4">
+            <a href="{{url_for('showGenres')}}" class="btn btn-default">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>Show All Genres
+            </a>
+        </div>
+        <div class="col-md-4">
+            <h1>Catalog App</h1>
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="{{url_for('showLogin')}}" class="btn btn-default">Login </a>
+        </div>
+    </div>    
+    <div class="row divider green">
+        <div class="col-md-12"></div>
+    </div>
+    <!-- Banner shows the genre name and the creator information for this genre -->
+    <div class="row banner main">
+        <div class="col-md-11 col-md-offset-1 padding-none">
+            <h2>{{ genre.name }}
+                <figure class="creator">
+                    <img src="{{ creator.picture}}">
+                    <figcaption>Creator: {{ creator.name }}</figcaption>
+                </figure>
+            </h2>
+        </div>
+    </div>
+    <!-- Flashed messages appear here-->
+    <div class="flash">       
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                         <li> <strong> {{ message }} </strong> </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="row padding-top padding-bottom">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 padding-none">            
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <!-- For each book in the genre, show the book properties and edit and delete operations -->
+    {% if books !=[] %}
+        <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    {% for i in books %}
+                        <div class="book-item">
+                            <p class="book-title">{{i.name}}</p>
+                            <p>{{i.description}}</p>
+                            <p>By: {{i.author}} </p>
+                            <p>ISBN: {{i.isbn}} </p>                            
+                        </div>                    
+                    {% endfor %}
+                </div>
+            <div class="col-md-1"></div>
+        </div>
+    <!-- If no books exist for this genre, show this message -->
+    {% else %}
+    <p> You currently have no books in this genre. <p>
+    {% endif %}
+{% endblock %}
