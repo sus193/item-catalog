@@ -1,11 +1,11 @@
 An application that provides a list of items (books) within a variety of categories (genres) as well as provide a user registration and authentication system. Registered users will have the ability to post, edit and delete their own items.
 
 ## Products
-- [Google Authentication/Authorization][1]
+- [Google Authentication/Authorization]
 
 ## Language
-- [HTML][2]
-- [Python][3]
+- [HTML]
+- [Python]
 
 ## Setup Instructions
 1. Code to download:
