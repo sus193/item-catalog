@@ -5,7 +5,7 @@ An application that provides a list of items (books) within a variety of categor
 
 ## Language
 - [HTML][2]
-- [Python][2]
+- [Python][3]
 
 ## Setup Instructions
 1. Code to download:
